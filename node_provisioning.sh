@@ -4,10 +4,10 @@ sudo apt-get install -y nodejs
 
 #Download app web
 mkdir /home/vagrant/app
-curl https://raw.githubusercontent.com/juan-pinzon/compunube/main/consul/resources/app/index.js --output /home/vagrant/app/index.js
+curl https://github.com/fgarcesolivares/consul/blob/main/consul/resources/app/index.js --output /home/vagrant/app/index.js
 
 #Create appweb as service
-curl https://raw.githubusercontent.com/juan-pinzon/compunube/main/consul/resources/service_template.service --output /lib/systemd/system/appweb.service
+curl https://github.com/fgarcesolivares/consul/blob/main/consul/resources/service_template.service --output /lib/systemd/system/appweb.service
 systemctl daemon-reload
 systemctl start appweb
 systemctl enable appweb
@@ -22,5 +22,5 @@ consul agent -node=agent-web1 -bind=192.168.58.3 -enable-script-checks=true -dat
 consul join 192.168.58.2
 
 #Config WebServer for consul
-curl https://raw.githubusercontent.com/juan-pinzon/compunube/main/consul/resources/web-service.json --output /etc/consul.d/web-service.json
+curl https://github.com/fgarcesolivares/consul/blob/main/consul/resources/web-service.json --output /etc/consul.d/web-service.json
 consul reload
